@@ -1,0 +1,68 @@
+name: Tests
+
+# Runs test/lint suite for both website-v2 and slides-template in monorepo
+# Merged from slides-template/.github/workflows/test.yml
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website-v2/**'
+      - 'slides-template/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'website-v2/**'
+      - 'slides-template/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version:
+          - 20
+          - 22
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build design tokens
+        run: npm run build:tokens
+
+      - name: Lint website-v2
+        run: npm run lint -w website-v2 --if-present
+
+      - name: Build website-v2
+        run: npm run build -w website-v2
+
+      - name: Build slides-template
+        working-directory: slides-template
+        run: npm run build --if-present
+
+      - name: Test slides-template
+        working-directory: slides-template
+        run: npm test
+        env:
+          CI: true

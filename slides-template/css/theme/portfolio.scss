@@ -1,0 +1,578 @@
+/**
+ * Portfolio theme — sources palette/typography from @personal-brand/design-tokens
+ * Canonical tokens live in packages/design-tokens/tokens.json
+ * Dark navy foundation with blue accents, Inter + mono, 8px radius, hairline borders.
+ */
+
+@use 'sass:color';
+@use '../../../packages/design-tokens/dist/tokens' as dt;
+@use 'template/mixins' as mixins;
+
+// aliases for readability (preserve $accent/$accent2 for local rules)
+$accent: dt.$accent;
+$accent2: dt.$accent2;
+
+// inject site tokens as reveal variables — sourced from design-tokens
+@use 'template/settings' with (
+  $background-color: dt.$bg,
+  $main-color: dt.$fg,
+  $heading-color: dt.$fg,
+
+  $main-font: ('Inter', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif),
+  $main-font-size: 38px,
+  $heading-font: ('Inter', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif),
+  $heading-font-weight: 700,
+  $heading-line-height: 1.05,
+  $heading-letter-spacing: -0.02em,
+  $heading-text-transform: none,
+
+  $heading1-size: 2.2em,
+  $heading2-size: 1.35em,
+  $heading3-size: 1.05em,
+  $heading4-size: 0.85em,
+
+  $block-margin: 18px,
+  $code-font: ('SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace),
+
+  $link-color: dt.$accent,
+  $link-color-hover: dt.$accent2,
+  $selection-color: dt.$selection-fg,
+  $selection-background-color: rgba(59, 130, 246, 0.35),
+
+  $overlay-element-bg-color: '19 32 64',
+  $overlay-element-fg-color: '230 234 242'
+);
+
+@use 'template/theme';
+
+// --- fonts ---
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+// CSS custom props are provided by @personal-brand/design-tokens
+// :root is already injected by '../../../packages/design-tokens/dist/tokens' (see dist/_tokens.scss)
+// Keeping this block empty avoids duplication — tokens.json is the single source of truth.
+
+// force viewport background (covers print as well) — color sourced from design-tokens
+.reveal-viewport {
+  background: dt.$bg;
+  background-color: dt.$bg;
+  background-image:
+    radial-gradient(900px 520px at 18% 10%, rgba(59, 130, 246, 0.09), transparent 60%),
+    radial-gradient(700px 420px at 96% 18%, rgba(96, 165, 250, 0.06), transparent 62%);
+}
+
+// base typographic tuning
+.reveal {
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.01em;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  letter-spacing: -0.03em;
+  line-height: 0.97;
+}
+
+.reveal h1 {
+  font-weight: 700;
+}
+
+.reveal h2 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.reveal h3 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.reveal p,
+.reveal li {
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+.reveal strong,
+.reveal b {
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.reveal small {
+  color: var(--muted);
+}
+
+// links
+.reveal a {
+  text-underline-offset: 3px;
+}
+
+// muted helper
+.reveal .text-muted,
+.reveal .muted {
+  color: var(--muted);
+}
+
+// ---- website-v2 surface components adapted for slides ----
+
+// eyebrow / k-label  (11px upper, 0.08em, muted)
+.reveal .k-label,
+.reveal .eyebrow {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.32em; // ~12px at 38px base
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 0.9em;
+}
+
+// sub copy (site's h1-sub / description tone)
+.reveal .sub,
+.reveal .desc {
+  font-size: 0.42em;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 48ch;
+}
+
+.reveal .hero-title {
+  font-size: var(--r-heading1-size);
+  line-height: 0.95;
+  max-width: 12ch;
+}
+
+.reveal .hero-sub {
+  font-size: 0.42em;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 42ch;
+  margin-top: 0.7em;
+}
+
+// cards  (mirrors .card)
+.reveal .card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  text-align: left;
+}
+
+.reveal .card-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  text-align: left;
+}
+
+.reveal .card h4,
+.reveal .card-ghost h4 {
+  font-family: var(--sans);
+  font-size: 0.28em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 0 0 14px 0;
+  line-height: 1;
+}
+
+// focus rows (site's .focus-row)
+.reveal .focus-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.36em;
+}
+.reveal .focus-row:last-child { border-bottom: 0; }
+.reveal .focus-row b { font-weight: 500; font-size: 1em; }
+.reveal .focus-row span {
+  font-family: var(--mono);
+  font-size: 0.78em;
+  color: var(--muted);
+}
+
+// tag pills
+.reveal .tag-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.reveal .tag {
+  font-size: 0.29em;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--sans);
+}
+
+// meta row (mono 11px)
+.reveal .meta-row {
+  display: flex;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 0.28em;
+  color: var(--muted);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.reveal .b-meta {
+  font-family: var(--mono);
+  font-size: 0.26em;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+// bento / feature grid (2-col like site)
+.reveal .bento {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+  text-align: left;
+}
+.reveal .bento-main {
+  padding: 22px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.reveal .bento-card {
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reveal .bento-main h3 { font-size: 0.62em; line-height: 1.15; }
+.reveal .bento-card h3 { font-size: 0.48em; line-height: 1.25; }
+
+@media (max-width: 900px) {
+  .reveal .bento { grid-template-columns: 1fr; }
+}
+
+// signal bar (hairline columns)
+.reveal .sig-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  text-align: left;
+}
+.reveal .sig-cell {
+  padding: 14px 16px;
+  border-right: 1px solid var(--border);
+  background: transparent;
+}
+.reveal .sig-cell:last-child { border-right: 0; }
+.reveal .sig-cell .k {
+  font-family: var(--mono);
+  font-size: 0.26em;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+.reveal .sig-cell .v {
+  font-size: 0.38em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+// log grid (2-col cards)
+.reveal .log-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+}
+.reveal .log-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.reveal .log-card .d {
+  font-family: var(--mono);
+  font-size: 0.28em;
+  color: var(--muted);
+  min-width: 64px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.reveal .log-card .t {
+  font-size: 0.36em;
+  line-height: 1.5;
+}
+
+// buttons (site .btn)
+.reveal .btn {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--r);
+  font-size: 0.34em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.12s, background 0.15s, border-color 0.15s;
+  background: var(--surface);
+  color: var(--fg);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.reveal .btn-p {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.reveal .btn-p:hover {
+  background: var(--accent2);
+  border-color: var(--accent2);
+}
+.reveal .btn-s:hover { border-color: var(--fg); }
+.reveal .btn:active { transform: scale(0.98); }
+
+// link-sm
+.reveal .link-sm {
+  font-size: 0.32em;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+.reveal .link-sm:hover { color: var(--accent2); }
+
+// lists — tighter, site-like
+.reveal ul,
+.reveal ol {
+  margin: 0.6em 0 0 1.1em;
+}
+.reveal li {
+  margin: 0.28em 0;
+  font-size: 0.42em;
+}
+.reveal li::marker {
+  color: var(--accent);
+}
+
+// blockquote — left accent line (site uses subtle surfaces, we use accent rule)
+.reveal blockquote {
+  width: 100%;
+  margin: 0.9em 0;
+  padding: 14px 18px 14px 20px;
+  font-style: normal;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r);
+  box-shadow: none;
+  text-align: left;
+  font-size: 0.42em;
+  line-height: 1.6;
+  color: var(--fg);
+}
+.reveal blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.78em;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+// code — surface card treatment
+.reveal pre {
+  width: 100%;
+  margin: 0.8em 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: none;
+  font-size: 0.38em;
+}
+.reveal pre code {
+  padding: 16px 18px;
+  max-height: 420px;
+  background: transparent;
+  color: var(--fg);
+}
+.reveal pre code.hljs {
+  background: transparent;
+  padding: 16px 18px;
+}
+// tune highlight tokens for deep navy — keep legible, desaturate slightly
+.reveal .hljs {
+  background: transparent;
+  color: var(--fg);
+}
+.reveal .hljs-keyword,
+.reveal .hljs-selector-tag,
+.reveal .hljs-built_in { color: #60a5fa; }
+.reveal .hljs-string,
+.reveal .hljs-title,
+.reveal .hljs-section { color: #93c5fd; }
+.reveal .hljs-comment { color: #6b7fa6; font-style: italic; }
+.reveal .hljs-attr,
+.reveal .hljs-attribute { color: #a5b4d6; }
+.reveal .hljs-number,
+.reveal .hljs-literal { color: #fca5a5; }
+.reveal :not(pre) > code {
+  font-family: var(--mono);
+  font-size: 0.78em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--fg);
+}
+
+// tables — hairline header, site-like
+.reveal table {
+  font-size: 0.38em;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--surface);
+}
+.reveal table th {
+  background: rgba(19, 32, 64, 0.9);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.78em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+.reveal table th,
+.reveal table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.reveal table tbody tr:last-child td,
+.reveal table tbody tr:last-child th {
+  border-bottom: none;
+}
+
+// progress — accent line on translucent track
+.reveal .progress {
+  height: 3px;
+  background: rgba(30, 51, 92, 0.7);
+  color: var(--accent);
+}
+.reveal .progress span {
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+// controls — muted by default, accent on hover
+.reveal .controls {
+  color: var(--muted);
+}
+.reveal .controls button {
+  color: var(--muted);
+}
+.reveal .controls button:hover {
+  color: var(--accent);
+}
+
+// slide number — mono pill
+.reveal .slide-number {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  bottom: 14px;
+  right: 14px;
+}
+
+// fragments
+.reveal .fragment {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+// section divider — centered, generous
+.reveal .section-divider {
+  text-align: center;
+}
+.reveal .section-divider .k-label {
+  margin-bottom: 1.2em;
+}
+.reveal .section-divider h2 {
+  font-size: 1.8em;
+  line-height: 0.95;
+}
+
+// wordmark dot (site's portfolio<i>)
+.reveal .wordmark {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.reveal .wordmark i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+// subtle divider utility
+.reveal .hairline {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: 18px 0;
+}
+
+// ensure light-background slides (e.g. PDF export) still get dark text
+@include mixins.light-bg-text-color(dt.$bg);
+
+// focus visibility
+.reveal :focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  border-radius: 6px;
+}

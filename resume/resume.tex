@@ -1,0 +1,198 @@
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1cm}
+
+\usepackage{paracol}
+
+\ifxetexorluatex
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkPastelRed}{HTML}{450808}
+\definecolor{PastelRed}{HTML}{8F0D0D}
+\definecolor{GoldenEarth}{HTML}{E7D192}
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{headingrule}{GoldenEarth}
+\colorlet{subheading}{PastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+
+
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\input{pubs-num}
+
+\addbibresource{sample.bib}
+
+\begin{document}
+\name{Joseph Abbate}
+\tagline{Security Engineer and Builder}
+
+
+\personalinfo{%
+  \email{joe@joeabbate.me}
+  \phone{516-310-1306}
+  \homepage{joeabbate.me}
+  \linkedin{jabbate19}
+  \github{jabbate19}
+}
+  
+\makecvheader
+
+\columnratio{0.6}
+
+
+\begin{paracol}{2}
+\cvsection{Experience}
+
+\cvevent{Senior Security Engineer - Insider Trust}{\href{https://meta.com}{Meta}}{Oct 2024 - Present}{New York, NY}
+\begin{itemize}
+\item Researched and deployed detections in new Data Loss Prevention space ahead of schedule in brand new TTP space
+\item Coordinated rapid development effort to detect newly discovered TTP in internal abuse space, combining datasets from various sources for highest fidelity signal
+\item Utilized AI to Improve Inefficient Automation, Reducing Compute Jobs by 99\%
+\end{itemize}
+
+\divider
+
+\cvevent{Information Security Intern - Insider Threat}{\href{https://citadel.com}{Citadel}}{June 2024 - Aug. 2024}{New York, NY}
+\begin{itemize}
+\item Expanded detection coverage by developing framework to tag sensitive documents during development life cycle
+\item Designed system to reduce CVE detection time from hours to minutes via scalable syncing system
+\end{itemize}
+
+
+\divider
+
+\cvevent{Cyber Operations Intern}{\href{https://mitre.org}{MITRE}, Offensive Operations and Effects}{May 2023 - Aug. 2023}{McLean, VA}
+\begin{itemize}
+\item Developed embedded security tool to demonstrate Counter-UAS and AIS Deterrent Strategies
+\item Identified security flaws in FAA-Enforced protocol and database API
+\end{itemize}
+
+\cvsection{Projects}
+
+\cvevent{\href{https://github.com/spellshift/realm}{Realm (spellshift/realm)}}{}{July 2023 - Ongoing}{}
+\begin{itemize}
+\item 6th Highest Contributor to Rust agent library and Golang control platform
+\item Ensured compatibility with FreeBSD systems and developed solutions for gaps in current library
+\item Implemented 12+ features to agent library, improved operator experience with improved credential UI
+\end{itemize}
+
+% \divider
+
+% \cvevent{\href{https://github.com/ComputerScienceHouse/proxstar}{Proxstar (ComputerScienceHouse/proxstar)}}{}{July. 2022 - May 2024}{}
+% \begin{itemize}
+% \item Service to provide managed Proxmox VMs with IP Registration
+% \item Used Proxmox API to configure Websocket VNC proxy between cluster and the end client
+% \end{itemize}
+
+\divider
+
+\cvevent{\href{https://github.com/jabbate19/steeloxide}{Steeloxide (jabbate19/steeloxide)}}{}{May 2022 - Dec. 2022}{}
+\begin{itemize}
+\item Compiled suite of various tools to assist in Blue Team defense for Red vs Blue Competitions in Rust
+\item Reduced hardening efforts from hours to minutes via automatic account/permission auditing, network traffic and process tracking, and analysis for malicious traffic activity
+\end{itemize}
+
+\medskip
+
+
+\newpage
+
+\switchcolumn
+
+\cvsection{Education}
+
+\cvevent{B.S., Cybersecurity}{\href{https://rit.edu}{Rochester Institute of Technology}}{Aug. 2021 - Aug. 2024}{}
+Cumulative GPA: 3.87
+
+Summa Cum Laude
+
+Outstanding Undergraduate Scholar - 2024
+
+Dean's List - All Semesters
+
+\medskip
+
+\cvsection{Skills}
+
+\cvevent{Languages}{}{}{}
+\cvtag{Python}
+\cvtag{Rust}
+\cvtag{Go}
+\cvtag{C} \\
+\cvtag{C++}
+\cvtag{JavaScript}
+
+\medskip
+
+\cvevent{Technologies}{}{}{}
+\cvtag{Agentic Workflows} \\
+\cvtag {Data Loss Prevention} 
+\cvtag {SIEM} \\
+\cvtag {SOAR Automation} 
+\cvtag {Data Pipelines} \\
+\cvtag {Anomaly Detections}
+% \cvtag{Proxmox}
+% \cvtag{S3}
+\cvtag{Kubernetes} \\
+% \cvtag{Openshift / OKD}
+% \cvtag{FreeIPA} \\
+% \cvtag{Ceph}
+% \cvtag{Source Control}
+\cvtag{Docker} 
+% \cvtag{Ansible}
+% \cvtag{Puppet} 
+\cvtag{Terraform}
+\cvtag{GCP}
+% \cvtag{CI/CD}
+% \cvtag{MongoDB}
+
+\cvsection{Extracurriculars}
+
+\cvevent{\href{https://firstinspires.org}{FIRST Robotics - Long Island}}{FIRST Technical Advisor}{}{}
+\begin{itemize}
+\item Manage team of 20+ Volunteers, spearheading field management and control system support
+\end{itemize}
+
+\divider
+
+\cvevent{\href{https://ists.io}{Information Security Talent Search}}{Red Team Router Lead}{}{}
+\begin{itemize}
+\item Lead team of 6 Red Team members to develop and deploy unique tools on hosts
+\item Utilize unique TTPs and Persistence for abnormal operating systems (FreeBSD, pfSense)
+\end{itemize}
+
+\divider
+
+\cvevent{\href{https://csh.rit.edu}{Computer Science House}}{Lead System Administrator}{2021-2024}{}
+\begin{itemize}
+\item Maintained Proxmox, OKD (Kubernetes), and Ceph clusters alongside variety of open source projects for member usage
+\end{itemize}
+
+
+\medskip
+
+
+\end{paracol}
+
+
+\end{document}

@@ -1,0 +1,28 @@
+{
+  "name": "personal-brand",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "website-v2",
+    "slides-template",
+    "slides-template/react",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -ws --if-present",
+    "build:website": "npm run build -w website-v2",
+    "build:slides": "npm run build -w reveal.js",
+    "build:tokens": "npm run build -w @personal-brand/design-tokens",
+    "dev:website": "npm run dev -w website-v2",
+    "dev:slides": "npm run start -w reveal.js",
+    "lint": "npm run lint -w website-v2 --if-present"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=20.19.0",
+      "onFail": "error"
+    }
+  }
+}

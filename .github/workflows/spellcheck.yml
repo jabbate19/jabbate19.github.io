@@ -1,0 +1,29 @@
+# Codespell configuration lives in .codespellrc (root) and slides-template/.codespellrc
+---
+name: Spellcheck
+
+# Merged from slides-template/.github/workflows/spellcheck.yml
+# Branch updated from master → main for monorepo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  codespell:
+    name: Check for spelling errors
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Codespell
+        uses: codespell-project/actions-codespell@v2
+        with:
+          skip: ./.git,./.backup,./dist,./website-v2/dist,./slides-template/dist,package-lock.json,*.css,.codespellrc,./slides-template/react/,./node_modules,./resume/build

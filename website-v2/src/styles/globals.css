@@ -1,0 +1,38 @@
+@import './tokens.css';
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* shared section */
+.section{padding:48px 0;border-top:1px solid var(--border)}
+.s-head{margin-bottom:28px;max-width:580px}
+.s-head h2{font-size:24px;letter-spacing:-.02em;line-height:1.1}
+.s-head p{font-size:14px;color:var(--muted);line-height:1.65;margin-top:8px;max-width:44ch}
+
+/* shared card */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px}
+.card-ghost{background:var(--bg)}
+.card h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
+.k-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:16px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
+
+/* buttons */
+.btn{height:42px;padding:0 18px;border-radius:var(--r);font-size:14px;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);cursor:pointer;transition:transform .12s, background .15s, border-color .15s;background:var(--surface);color:var(--fg);white-space:nowrap;text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn-p{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-p:hover{background:var(--accent2);border-color:var(--accent2)}
+.btn-s:hover{border-color:var(--fg)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.link-sm{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.02em}
+.link-sm:hover{color:var(--accent2)}
+
+/* footer shared */
+.foot{padding:36px 0 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:12px;font-family:var(--mono);letter-spacing:.02em}
+.foot a{color:var(--muted)}
+.foot a:hover{color:var(--fg)}
+@media(max-width:520px){
+  body{font-size:15px}
+  .s-head h2{font-size:22px}
+  .desc{font-size:13.5px}
+}

@@ -1,0 +1,5 @@
+/* Canonical tokens live in @personal-brand/design-tokens (packages/design-tokens/tokens.json) */
+/* This shim re-exports the built tokens. Using relative path so builds work */
+/* without requiring a prior `npm install` at the monorepo root.          */
+/* Vite also resolves '@personal-brand/design-tokens/tokens.css' via workspaces when installed. */
+@import '../../../packages/design-tokens/dist/tokens.css';

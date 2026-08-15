@@ -1,0 +1,21 @@
+{
+  "name": "@personal-brand/design-tokens",
+  "version": "0.1.0",
+  "description": "Shared design tokens for website-v2 and slides-template (reveal.js portfolio theme)",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./dist/tokens.ts",
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.scss": "./dist/_tokens.scss",
+    "./tokens.json": "./tokens.json"
+  },
+  "files": [
+    "dist",
+    "tokens.json"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "npm run build"
+  }
+}
