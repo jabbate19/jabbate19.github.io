@@ -60,6 +60,7 @@ export function ContactSide({ onToast }: { onToast: (m:string)=>void }) {
           <span className="pgp-dot" aria-hidden>·</span>
           <span className="mono muted">{contactPgp.created}</span>
         </div>
+        {/* codespell:ignore-next-line fpr */}
         <div className="fp"><span className="mono muted">FPR</span> {contactPgp.fpLines[0]}<br/>{contactPgp.fpLines[1]}<br/><span className="mono muted">UID</span> {contactPgp.uid}</div>
         <div className="row">
           <button className="badge" type="button" onClick={async()=>{ const ok=await copyToClipboard(contactPgp.fingerprint); onToast(ok?'Fingerprint copied':'Copy failed')}}>copy fingerprint</button>

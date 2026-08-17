@@ -1,6 +1,6 @@
 [codespell]
 # Ref: https://github.com/codespell-project/codespell#using-a-config-file
 # Root config for monorepo — picked up automatically by codespell and the GitHub Action
-skip = .git*,.backup,dist,website-v2/dist,slides-template/dist,node_modules,package-lock.json,*.css,.codespellrc,react,resume/build
+skip = .git*,.backup,dist,website-v2/dist,slides-template/dist,node_modules,package-lock.json,*.css,.codespellrc,react,./resume/build,./slides-template/js,./slides-template/plugin
 check-hidden = true
 ignore-words-list = ISTS,ists

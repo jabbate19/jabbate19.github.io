@@ -25,5 +25,3 @@ jobs:
         uses: actions/checkout@v4
       - name: Codespell
         uses: codespell-project/actions-codespell@v2
-        with:
-          skip: ./.git,./.backup,./dist,./website-v2/dist,./slides-template/dist,package-lock.json,*.css,.codespellrc,./slides-template/react/,./node_modules,./resume/build

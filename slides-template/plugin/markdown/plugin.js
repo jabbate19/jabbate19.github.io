@@ -309,7 +309,7 @@ const Plugin = () => {
 	 * If yes, extract it and add that value as one or several attributes
 	 * to the target element.
 	 *
-	 * You need Cache Killer on Chrome to see the effect on any FOM [sic] transformation
+	 * You need Cache Killer on Chrome to see the effect on any FOM transformation
 	 * directly on refresh (F5)
 	 * http://stackoverflow.com/questions/5690269/disabling-chrome-cache-for-website-development/7000899#answer-11786277
 	 */
