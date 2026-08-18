@@ -8,6 +8,11 @@
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",
+		"paths": {
+			"reveal.js": ["./js/reveal.d.ts"],
+			"reveal.js/plugin/*": ["./plugin/*"],
+			"reveal.css": ["./css/reveal.scss"]
+		},
 		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,

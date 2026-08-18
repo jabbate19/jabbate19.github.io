@@ -1,14 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="JA">
 <title>JA — Joe Abbate</title>
 <!-- palette: bg #0a1628 / border #1e335c / fg #e6eaf2 / accent #3b82f6 — matches tokens.json -->
-<style>
-  /* light-mode tab bar: favicon inverts to stay legible on white */
-  @media (prefers-color-scheme: light) {
-    .bg { fill: #ffffff; }
-    .bd { stroke: #d9e2f3; }
-    .fg { fill: #0a1628; }
-  }
-</style>
 <rect class="bg" width="32" height="32" rx="8" fill="#0a1628"/>
 <rect class="bd" x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#1e335c" stroke-opacity="1"/>
 <!-- JA — Inter 700, tight tracking like wordmark; text keeps it crisp at 16px, no paths needed -->

@@ -189,10 +189,8 @@ export function ResumePage() {
       <style>{`@media (max-width: 860px) {
   .resume-head-grid { grid-template-columns: 1fr !important; }
 }
-@media (prefers-color-scheme: dark) {
-  .resume-viewer { background: #000 !important; }
-  .resume-viewer > div:nth-child(2) { background: #000 !important; }
-}`}</style>
+.resume-viewer { background: #000 !important; }
+.resume-viewer > div:nth-child(2) { background: #000 !important; }`}</style>
     </>
   )
 }

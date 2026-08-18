@@ -53,7 +53,7 @@ const css = `:root{
   --r-surface-2:${c.surface2};
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scrollbar-gutter:stable}
+html{scrollbar-gutter:stable;color-scheme:dark}
 html,body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 :focus{outline:none}
